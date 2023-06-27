@@ -1,11 +1,11 @@
 <x-app-layout>
-    <x-slot name="header">
+    {{-- <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Profile') }}
         </h2>
-    </x-slot>
+    </x-slot> --}}
 
-    <div class="py-12">
+    {{-- <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
             <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
                 <div class="max-w-xl">
@@ -25,5 +25,15 @@
                 </div>
             </div>
         </div>
+    </div> --}}
+    <div class="max-w-7xl mx-auto mt-11 grid grid-cols-[2fr_1fr]">
+        <section class="grid grid-cols-[2fr_1fr] gap-x-14 gap-y-6">
+            <x-card class="h-[400px]">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum, quis.
+            </x-card>
+            <x-card>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum, quis.
+            </x-card>
+        </section>
     </div>
 </x-app-layout>
