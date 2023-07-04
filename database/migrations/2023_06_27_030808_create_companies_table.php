@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('organization_type');
             $table->string('logo');
             $table->string('tagline');
-            $table->string('indsutry');
+            $table->string('industry');
             $table->boolean('verified')->default(false);
             $table->unsignedBigInteger('user_id');
             $table->timestamps();

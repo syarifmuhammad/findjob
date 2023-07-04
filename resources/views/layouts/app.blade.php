@@ -14,9 +14,10 @@
 
 <body class="antialiased">
     @include('layouts.navigation')
-    <main class="bg-slate-100 min-h-screen w-full">
+    <main class="bg-slate-100 h-screen w-full block">
         {{ $slot }}
     </main>
+    @stack('custom-scripts')
 </body>
 
 </html>

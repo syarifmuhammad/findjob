@@ -49,7 +49,7 @@
             @endforeach
         </x-card>
         <x-card class="flex flex-col divide-y">
-            {{-- @for ($i=0; $i<10; $i++)
+            @for ($i=0; $i<10; $i++)
                 <div class="flex gap-x-3 py-4">
                     <div>
                         <div class="bg-slate-500 w-10 aspect-square rounded-full">
@@ -61,7 +61,7 @@
                         <h3>{{ $company->organization_type }}</h3>
                     </div>
                 </div>
-            @endfor --}}
+            @endfor
         </x-card>
     </div>
 </x-app-layout>

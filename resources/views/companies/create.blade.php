@@ -29,7 +29,7 @@
                 <p class="text text-center mt-2 text-gray-400">Industry</p>
             </x-card>
         </div>
-        <form method="POST" action="{{ route('companies.store') }}" enctype="multipart/form-data" class="mb-6 w-2/3">
+        <form enctype="multipart/form-data" method="POST" action="{{ route('companies.store') }}" class="mb-6 w-2/3">
             @csrf
             <x-card>
                 <div class="mt-4">
@@ -84,7 +84,7 @@
                 <div class="mt-4">
                     <x-input-label for="logo" class="mb-2" :value="__('Logo')" />
                     <div class="rounded-lg bg-gray-100 w-100 border border-dashed border-gray-500">
-                        <div class="flex flex-col justify-center items-center py-8 cursor-pointer">
+                        <div class="flex flex-col justify-center items-center py-8 cursor-pointer" id="parent_upload">
                             <div class="flex gap-x-3">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-supported-dps="24x24"
                                     fill="currentColor" class="mercado-match" width="24" height="24"
@@ -93,9 +93,9 @@
                                         d="M21 14v5a3 3 0 01-3 3H6a3 3 0 01-3-3v-5h2v5a1 1 0 001 1h12a1 1 0 001-1v-5zm-10 2h2V5.15L17 8V5.57L12 2 7 5.57V8l4-2.85z">
                                     </path>
                                 </svg>
-                                <h3 class="text-gray-700">Choose File</h3>
+                                <h3 class="text-gray-700" id="text_choose_file">Choose File</h3>
                             </div>
-                            <p class="text-gray-700 text-xs mt-1 text-center">Unggah untuk melihat</p>
+                            <p class="text-gray-700 text-xs mt-1 text-center" id="text_nama_input">Unggah untuk melihat</p>
                             <x-text-input id="logo" class="hidden mb-6 w-full" type="file" name="logo"
                                 :value="old('logo')" required />
                         </div>
@@ -118,4 +118,27 @@
             </div>
         </form>
     </div>
+
+    @push('custom-scripts')
+    <script>
+        let parent_upload = document.querySelector('#parent_upload')
+        let logo = document.querySelector('#logo')
+        let text_choose_file = document.querySelector('#text_choose_file')
+        let text_nama_input = document.querySelector('#text_nama_input')
+
+        logo.addEventListener('change', (data) => {
+            if (data.target.files.length > 0) {
+                text_choose_file.innerText = "Ubah file"
+                text_nama_input.innerText = data.target.files[0].name
+            } else {
+                text_choose_file.innerText = "Choose file"
+                text_nama_input.innerText = "Unggah untuk melihat"
+            }
+        })
+
+        parent_upload.addEventListener('click', () => {
+            logo.click()
+        })
+    </script>
+    @endpush
 </x-app-layout>
