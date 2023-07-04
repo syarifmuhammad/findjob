@@ -34,7 +34,7 @@ Route::prefix('/companies')->name('companies.')->group(function () {
         Route::post('/store', [CompanyController::class, 'store'])->name('store');
     });
 });
-Route::get('/jobs', [ProfileController::class, 'edit'])->name('job');
-Route::get('/courses', [ProfileController::class, 'edit'])->name('course');
+Route::get('/jobs', [ProfileController::class, 'index'])->name('job');
+Route::get('/courses', [ProfileController::class, 'index'])->name('course');
 
 require __DIR__.'/auth.php';
