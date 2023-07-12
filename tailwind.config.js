@@ -16,15 +16,18 @@ module.exports = {
             },
             colors: {
                 primary: '#016C6E',
+                primary_50: '#CCE2E2',
                 secondary: '#E3FFF7',
                 black_custom: '#2F2F2F',
-                white_custom: "#F9F9F9",
+                white_custom: '#F5F5F5',
+                gray_custom: '#848484',
+                gray_soft: '#F1F1F1',
             },
-            dropShadow: {
+            boxShadow: {
                 'soft': '0px 0px 15px rgba(0, 0, 0, 0.1)',
             },
             backgroundImage: {
-                'gradient-radial': 'radial-gradient(circle, rgba(80,80,80,1) 0%, rgba(80,80,80,0) 100%)'
+                'gradient-radial': 'radial-gradient(circle, rgba(10,10,10,.1) 0%, rgba(10,10,10,0) 100%)'
             },
             gridTemplateColumns: {
                 'profile': 'repeat(3fr 1fr)',

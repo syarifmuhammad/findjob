@@ -12,9 +12,9 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="antialiased">
+<body class="antialiased bg-white_custom text-black_custom">
     @include('layouts.navigation')
-    <main class="bg-slate-100 h-screen w-full block">
+    <main class="w-full block">
         {{ $slot }}
     </main>
     @stack('custom-scripts')

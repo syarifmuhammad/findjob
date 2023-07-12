@@ -1,7 +1,10 @@
 <?php
 
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RecruitmentController;
+use App\Http\Controllers\VacancyController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,7 +37,12 @@ Route::prefix('/companies')->name('companies.')->group(function () {
         Route::post('/store', [CompanyController::class, 'store'])->name('store');
     });
 });
-Route::get('/jobs', [ProfileController::class, 'index'])->name('job');
-Route::get('/courses', [ProfileController::class, 'index'])->name('course');
+Route::get('/courses', [CourseController::class, 'index'])->name('course');
+Route::get('/vacancies', [VacancyController::class, 'index'])->name('vacancy.index');
+
+Route::prefix('/recruitments')->name('recruitment.')->group(function () {
+    Route::get('/', [RecruitmentController::class, 'index'])->name('index');
+    Route::get('/create', [RecruitmentController::class, 'create'])->name('create');
+});
 
 require __DIR__.'/auth.php';
