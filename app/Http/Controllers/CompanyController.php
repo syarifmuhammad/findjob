@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Company;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CompanyController extends Controller
 {
@@ -25,6 +26,7 @@ class CompanyController extends Controller
         $company->organization_type = $request->organization_type;
         $company->logo = $request->file('logo')->store('company_logo', 'public');
         $company->tagline = $request->tagline;
+        $company->user_id = Auth::id();
         $company->save();
         session()->flash('companies.store', 'success');
         return redirect()->back();
