@@ -9,8 +9,8 @@
                             style="left:calc(50% - 40px);"></div>
                     </div>
                     <div class="p-8">
-                        <div class="text-center font-semibold text-primary">Gilan Nico Nico Nii</div>
-                        <p class="text-center text-xs text-gray_custom">Cloud Computing at Google</p>
+                        <div class="text-center font-semibold text-primary">{{ Auth::user()->name }}</div>
+                        <p class="text-center text-xs text-gray_custom">{{ Auth::user()->headline }}</p>
                         <div class="bg-gradient-radial w-full h-[1px] my-8"></div>
                         <div class="flex justify-between text-xs">
                             <p>Who see your profile</p>
@@ -20,6 +20,32 @@
                             <p>View your post</p>
                             <p class="font-semibold text-primary">5.821</p>
                         </div>
+                    </div>
+                </x-card>
+                <x-card class="w-full mt-8">
+                    <h1 class="text-primary font-medium">My Companies</h1>
+                    <div class="mt-4 flex flex-col gap-y-4 divide-y">
+                        @foreach ($my_companies as $my_company)
+                            <div>
+                                <a class="cursor-pointer" href="{{ route('companies.admin.index', $my_company->id) }}">
+                                    <img class="w-[100px]" src="{{ Storage::url($my_company->logo) }}" alt="">
+                                </a>
+                                <a class="cursor-pointer" href="{{ route('companies.admin.index', $my_company->id) }}">
+                                    <p class="mt-3 font-semibold text-lg hover:underline">{{ $my_company->name }}</p>
+                                </a>
+                            </div>
+                        @endforeach
+                    </div>
+                    <div class="mt-4">
+                        <a href="{{ route('companies.create') }}">
+                            <x-primary-button class="px-4 py-2 text-sm rounded-3xl flex items-center gap-x-4">Make Company
+                                <svg width="20" height="20" viewBox="0 0 25 25" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M18.5078 13.3821H13.5078V18.3821C13.5078 18.6473 13.4025 18.9017 13.2149 19.0892C13.0274 19.2767 12.773 19.3821 12.5078 19.3821C12.2426 19.3821 11.9882 19.2767 11.8007 19.0892C11.6132 18.9017 11.5078 18.6473 11.5078 18.3821V13.3821H6.50781C6.2426 13.3821 5.98824 13.2767 5.80071 13.0892C5.61317 12.9017 5.50781 12.6473 5.50781 12.3821C5.50781 12.1169 5.61317 11.8625 5.80071 11.675C5.98824 11.4874 6.2426 11.3821 6.50781 11.3821H11.5078V6.38208C11.5078 6.11686 11.6132 5.86251 11.8007 5.67497C11.9882 5.48744 12.2426 5.38208 12.5078 5.38208C12.773 5.38208 13.0274 5.48744 13.2149 5.67497C13.4025 5.86251 13.5078 6.11686 13.5078 6.38208V11.3821H18.5078C18.773 11.3821 19.0274 11.4874 19.2149 11.675C19.4025 11.8625 19.5078 12.1169 19.5078 12.3821C19.5078 12.6473 19.4025 12.9017 19.2149 13.0892C19.0274 13.2767 18.773 13.3821 18.5078 13.3821Z"
+                                        fill="#ffffff" />
+                                </svg></x-primary-button>
+                        </a>
                     </div>
                 </x-card>
                 <x-card class="w-full text-primary text-xs mt-8 font-semibold sticky top-8">
@@ -101,22 +127,32 @@
                 </x-card>
                 <div class="bg-gradient-radial w-full h-[1px] my-5"></div>
             @endauth
-            <x-card>
-                <h1 class="font-semibold text-xl mb-8">Recommendation Job</h1>
-                @for ($i = 0; $i < 3; $i++)
-                    <div class="w-full flex items-start justify-between mb-6">
-                        <div class="flex gap-x-6 items-start">
-                            <img class="w-8 aspect-square object-cover mt-1"
-                                src="{{ Vite::asset('resources/images/image-example.png') }}" alt="">
-                            <div>
-                                <p class="text-primary font-semibold">Cloud Solution Architect - AWS</p>
-                                <p class="text-xs text-gray_custom font-semibold">Amazon</p>
-                                <p class="mt-2 text-xs text-gray_custom">Washington, America</p>
+            <x-card class="mb-6 overflow-hidden" style="padding:0">
+                <div class="mb-2 pt-8 px-8">
+                    <h1 class="font-semibold text-xl">Job Recommendation</h1>
+                    {{-- <p class="text-gray-400">Based on your profile and search history</p> --}}
+                </div>
+
+                <div class="flex flex-col divide-y px-8">
+                    @foreach ($recommended_vacancies as $rv)
+                        <a href="{{ route('vacancies.collection', ['vacancy_id' => $rv->id]) }}"
+                            class="w-full flex items-start justify-between py-6 cursor-pointer group">
+                            <div class="flex gap-x-6 items-start">
+                                <img class="w-8 aspect-square object-cover mt-1"
+                                    src="{{ Storage::url($rv->company->logo) }}" alt="">
+                                <div>
+                                    <p class="text-primary font-semibold group-hover:underline">{{ $rv->job_title }}
+                                    </p>
+                                    <p class="text-xs text-gray_custom font-semibold">{{ $rv->company->name }}</p>
+                                    <p class="mt-2 text-xs text-gray_custom">{{ $rv->location }}</p>
+                                </div>
                             </div>
-                        </div>
-                        <x-secondary-button class="text-xs px-6 py-3 self-center">Apply Now</x-secondary-button>
-                    </div>
-                @endfor
+                            <x-secondary-button class="text-xs px-6 py-3 self-center">Apply Now</x-secondary-button>
+                        </a>
+                    @endforeach
+                </div>
+                <a href="{{ route('vacancies.collection') }}"
+                    class="block border-t py-4 text-center w-full hover:bg-gray_soft cursor-pointer">Show All</a>
             </x-card>
             <x-card class="mt-5">
                 <h1 class="font-semibold text-xl mb-8">Recommendation Course</h1>
@@ -179,8 +215,8 @@
                         Gravida ornare duis in viverra bibendum etiam velit. Nisl ut amet et nam. Non sed nunc est sit
                         egestas nulla massa. Augue phasellus in massa tempus ipsum vulputate.
                     </p>
-                    <div class="max-h-[652px] w-full bg-black_custom mt-6">
-                        <img src="{{ Vite::asset('resources/images/post-example.png') }}" class="h-full w-auto m-auto"
+                    <div class="w-full bg-black_custom mt-6">
+                        <img src="{{ Vite::asset('resources/images/post-example.png') }}" class="w-full"
                             alt="post">
                     </div>
                     <div class="flex justify-between text-gray_custom text-xs py-3 px-12">
@@ -221,22 +257,22 @@
             @endfor
         </div>
         <div class="w-3/12">
-            <x-card class="w-full sticky top-8">
+            <x-card class="w-full sticky top-8 overflow-y-auto max-h-[calc(100vh-4rem)]">
                 <h1 class="font-semibold mb-8">Follow for more</h1>
-                @for ($i = 0; $i < 3; $i++)
-                    <div class="w-full flex flex-col items-start justify-between mb-6">
+                @foreach ($follow as $f)
+                    <a href="{{ route('profile.index', $f->slug) }}" class="w-full flex flex-col items-start justify-between mb-6 group">
                         <div class="flex gap-x-6 items-start">
                             <img class="w-6 aspect-square object-cover mt-1"
-                                src="{{ Vite::asset('resources/images/image-example.png') }}" alt="">
+                                src="{{ Storage::url($f->profile_picture) }}" alt="">
                             <div>
-                                <p class="text-black_custom font-semibold">Michael Doe</p>
-                                <p class="mt-1 text-xs text-gray_custom">Cloud Computing at Google</p>
+                                <p class="text-black_custom font-semibold group-hover:underline">{{ $f->name }}</p>
+                                <p class="mt-1 text-xs text-gray_custom">{{ $f->headline }}</p>
                                 <x-secondary-button class="text-xs px-6 py-2 self-center mt-3"
                                     style="border-radius: 100px;">Follow</x-secondary-button>
                             </div>
                         </div>
-                    </div>
-                @endfor
+                    </a>
+                @endforeach
             </x-card>
         </div>
     </div>

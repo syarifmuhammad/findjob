@@ -33,9 +33,9 @@
 
                     </div>
                 </div>
-                <div class="mt-6">
+                <div class="mt-6 divide-y">
                     @for ($i = 0; $i < 3; $i++)
-                        <div class="w-full flex items-start justify-between py-6 px-2 group hover:bg-gray_soft cursor-pointer border-t border-b border-slate-100">
+                        <div class="w-full flex items-start justify-between py-6 px-2 group hover:bg-gray_soft cursor-pointer">
                             <div class="flex gap-x-6 items-start">
                                 <img class="w-[228px] aspect-video object-cover mt-1"
                                     src="{{ Vite::asset('resources/images/course-example.jpeg') }}" alt="">

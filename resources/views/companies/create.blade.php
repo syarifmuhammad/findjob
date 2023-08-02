@@ -33,7 +33,7 @@
                 <div class="mt-4">
                     <x-input-label for="website" class="mb-2" :value="__('Website')" />
                     <x-text-input id="website" class="block mb-6 w-full" type="text" name="website"
-                        :value="old('website')" required autocomplete="website"
+                        :value="old('website')" autocomplete="website"
                         placeholder="Masukkan website perusahaan anda" />
                     <x-input-error :messages="$errors->get('website')" class="mt-2" />
                 </div>

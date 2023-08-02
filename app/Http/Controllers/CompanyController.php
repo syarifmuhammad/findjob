@@ -13,6 +13,11 @@ class CompanyController extends Controller
         return view('companies.index', compact('companies'));
     }
 
+    public function show($id) {
+        $company = Company::find($id);
+        return view('companies.detail', compact('company'));
+    }
+
     public function create(Request $request) {
         return view('companies.create');
     }
@@ -20,15 +25,15 @@ class CompanyController extends Controller
     public function store(Request $request) {
         $company = new Company();
         $company->name = $request->name;
-        $company->website = $request->website;
         $company->industry = $request->industry;
+        $company->website = $request->website ?? "";
         $company->organization_size = $request->organization_size;
         $company->organization_type = $request->organization_type;
         $company->logo = $request->file('logo')->store('company_logo', 'public');
-        $company->tagline = $request->tagline;
+        $company->tagline = $request->tagline ?? "";
         $company->user_id = Auth::id();
         $company->save();
         session()->flash('companies.store', 'success');
-        return redirect()->back();
+        return to_route('companies.admin.index', $company->id);
     }
 }

@@ -13,14 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('jobs', function (Blueprint $table) {
+        Schema::create('vacancies', function (Blueprint $table) {
             $table->id();
             $table->string('job_title');
             $table->unsignedBigInteger('company_id');
-            $table->string('employment_type');
-            $table->string('location_type');
-            $table->string('industry');
-            $table->string('description');
+            $table->string('workplace_type');
+            $table->string('location');
+            $table->string('job_type');
+            $table->text('description');
             $table->boolean('verified')->default(false);
             $table->timestamps();
 
