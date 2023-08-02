@@ -1,0 +1,28 @@
+{
+  "resources/css/app.css": {
+    "file": "assets/app-9dbe1de9.css",
+    "isEntry": true,
+    "src": "resources/css/app.css"
+  },
+  "resources/images/bg-auth.svg": {
+    "file": "assets/bg-auth-3d7f5c7c.svg",
+    "src": "resources/images/bg-auth.svg"
+  },
+  "resources/images/bg-blue.png": {
+    "file": "assets/bg-blue-f68c159d.png",
+    "src": "resources/images/bg-blue.png"
+  },
+  "resources/images/image-example.png": {
+    "file": "assets/image-example-01dc51e9.png",
+    "src": "resources/images/image-example.png"
+  },
+  "resources/images/post-example.png": {
+    "file": "assets/post-example-4a454462.png",
+    "src": "resources/images/post-example.png"
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-84bd9784.js",
+    "isEntry": true,
+    "src": "resources/js/app.js"
+  }
+}
