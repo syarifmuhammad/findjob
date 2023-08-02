@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ApiSkillController;
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DashboardController;
@@ -21,6 +22,17 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::prefix('/admin')->name('admin.')->group(function () {
+    Route::get('', [AdminDashboardController::class, 'index'])->name('index');
+    Route::get('/course', [AdminDashboardController::class, 'course'])->name('course');
+    Route::get('/vacancy', [AdminDashboardController::class, 'vacancy'])->name('vacancy');
+    Route::get('/course/{id}', [AdminDashboardController::class, 'detail'])->name('detail');
+    Route::middleware('auth')->group(function () {
+       
+        Route::post('/store', [CompanyController::class, 'store'])->name('store');
+    });
+});
 
 
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
@@ -59,7 +71,13 @@ Route::prefix('/vacancies')->name('vacancies.')->group(function () {
     });
     // Route::get('/create', [CompanyController::class, 'create'])->name('create');
 });
-Route::get('/courses', [CourseController::class, 'index'])->name('course');
+// Route::get('/courses', [CourseController::class, 'index'])->name('course');
+Route::prefix('/courses')->name('course.')->group(function () {
+    Route::get('/', [CourseController::class, 'index'])->name('index');
+    Route::get('/{id}', [CourseController::class, 'detail'])->name('detail');
+});
+
+Route::get('/vacancies', [VacancyController::class, 'index'])->name('vacancy.index');
 
 Route::prefix('/recruitments')->name('recruitment.')->group(function () {
     Route::get('/', [RecruitmentController::class, 'index'])->name('index');

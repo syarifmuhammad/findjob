@@ -10,6 +10,10 @@ class RecruitmentController extends Controller
         return view('recruitments/index');
     }
 
+    public function detail() {
+        return view('recruitments/detail');
+    }
+
     public function create() {
         return view('recruitments/create');
     }

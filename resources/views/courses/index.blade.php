@@ -35,18 +35,22 @@
                 </div>
                 <div class="mt-6 divide-y">
                     @for ($i = 0; $i < 3; $i++)
-                        <div class="w-full flex items-start justify-between py-6 px-2 group hover:bg-gray_soft cursor-pointer">
+                    
+                        <div class="w-full flex items-start justify-between py-6 px-2 group hover:bg-gray_soft cursor-pointer border-t border-b border-slate-100">
                             <div class="flex gap-x-6 items-start">
                                 <img class="w-[228px] aspect-video object-cover mt-1"
                                     src="{{ Vite::asset('resources/images/course-example.jpeg') }}" alt="">
                                 <div>
+                                <a href="{{ route('course.detail', $i) }}">
                                     <p class="text-black_custom text-lg font-semibold group-hover:underline">Protect against Cyberattack</p>
                                     <p class="text-sm text-gray_custom font-semibold mt-2">Organizer : Google</p>
                                     <p class="text-sm text-gray_custom">23 people enroll this course</p>
+                                </a>
                                 </div>
                             </div>
                             {{-- <x-secondary-button class="text-xs px-6 py-3 self-center">Enroll Now</x-secondary-button> --}}
                         </div>
+                    
                     @endfor
                 </div>
                 <div class="mt-6">
