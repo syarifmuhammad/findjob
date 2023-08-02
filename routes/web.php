@@ -29,7 +29,7 @@ Route::prefix('/admin')->name('admin.')->group(function () {
     Route::get('/vacancy', [AdminDashboardController::class, 'vacancy'])->name('vacancy');
     Route::get('/course/{id}', [AdminDashboardController::class, 'detail'])->name('detail');
     Route::middleware('auth')->group(function () {
-       
+
         Route::post('/store', [CompanyController::class, 'store'])->name('store');
     });
 });
@@ -69,15 +69,11 @@ Route::prefix('/vacancies')->name('vacancies.')->group(function () {
         Route::get('', [ManageVacancyController::class, 'index'])->name('index');
         Route::post('/store', [ManageVacancyController::class, 'store'])->name('store');
     });
-    // Route::get('/create', [CompanyController::class, 'create'])->name('create');
 });
-// Route::get('/courses', [CourseController::class, 'index'])->name('course');
 Route::prefix('/courses')->name('course.')->group(function () {
     Route::get('/', [CourseController::class, 'index'])->name('index');
     Route::get('/{id}', [CourseController::class, 'detail'])->name('detail');
 });
-
-Route::get('/vacancies', [VacancyController::class, 'index'])->name('vacancy.index');
 
 Route::prefix('/recruitments')->name('recruitment.')->group(function () {
     Route::get('/', [RecruitmentController::class, 'index'])->name('index');
